@@ -3,4 +3,12 @@
     <string name="dice_cup_version_1">Dice Cup Version 1</string>
     <string name="roll">Roll</string>
     <string name="clear">Clear</string>
+    <string-array name="dices">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
 </resources>
