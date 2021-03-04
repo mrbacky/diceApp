@@ -80,19 +80,6 @@
         app:layout_constraintStart_toEndOf="@+id/btnRoll" />
 
 
-
-
-    <Button
-        android:id="@+id/btnClear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="onClickClear"
-        android:text="@string/clear"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <Spinner
         android:entries="@array/dices"
         android:id="@+id/sDicePicker"

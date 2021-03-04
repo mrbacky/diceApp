@@ -1,11 +1,15 @@
 package com.example.diceapp
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 import java.time.LocalDateTime
 import kotlin.collections.ArrayList
 
-class BEDiceThrow(
+@Parcelize
+data class BEDiceThrow(
     var time: Int,
-    var diceValues: MutableList<Int>
-) {
+    var diceValues: List<Int>
+) : Parcelable {
 
 }
