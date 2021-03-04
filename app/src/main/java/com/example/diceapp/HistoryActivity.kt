@@ -28,22 +28,12 @@ class HistoryActivity : AppCompatActivity() {
     }
 
     fun onClickBack(view: View) {
-        if (deleted) {
-            setResult(RESULT_OK, intent)
-            finish()
-        } else {
-            setResult(RESULT_CANCELED, intent)
-            finish()
-
-        }
-
+        finish()
     }
 
     fun onClickClearHistory(view: View) {
-        rvHistory.adapter = null
-        rvHistory.adapter?.notifyDataSetChanged()
-        deleted = true
-
+        setResult(RESULT_OK, intent)
+        finish()
 
     }
 }

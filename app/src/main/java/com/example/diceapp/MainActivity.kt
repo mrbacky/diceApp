@@ -5,32 +5,24 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.dice_throw_cell.*
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+
 class MainActivity : AppCompatActivity() {
     private val REQUEST_CODE_ANSWER = 1
+    private val DICE_THROWS_ARRAY = "throws"
     private val gen = Random()
-
-
     private var numberOfSelectedDices = 2
     private val diceIds = Constants.diceIds
-
-
-    var diceNumbers = DiceThrows().diceNumbers
     private var diceThrowsHistory = arrayListOf<BEDiceThrow>()
-
-//    private var diceThrowsHistory = arrayListOf(
-//        BEDiceThrow(1, listOf(1, 6, 2, 2)),
-//        BEDiceThrow(1, listOf(1, 6, 2, 6)),
-//        BEDiceThrow(1, listOf(4, 2, 2, 1))
-//
-//    )
 
     fun onClickHistory(view: View) {
         val i = Intent(this, HistoryActivity::class.java)
@@ -46,13 +38,18 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == REQUEST_CODE_ANSWER)
             if (resultCode == RESULT_OK) {
                 diceThrowsHistory.clear()
+
             }
 
     }
 
+
+    // create view model
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("debug", "$diceThrowsHistory and ${diceThrowsHistory.size}")
         super.onCreate(savedInstanceState)
+
+
+        Log.i("debug", "$diceThrowsHistory and ${diceThrowsHistory.size}")
         setContentView(R.layout.activity_main)
         createBoard(2)
         sDicePicker.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -77,27 +74,43 @@ class MainActivity : AppCompatActivity() {
     fun createBoard(value: Int) {
         llDiceBoard.removeAllViewsInLayout()
         for (i in 1..value) {
-            val randomNumber = gen.nextInt(6) + 1
-            val imageViewDice = ImageView(this)
-            imageViewDice.id = i
-            imageViewDice.layoutParams = LinearLayout.LayoutParams(150, 150)
-            imageViewDice.setImageResource(diceIds[randomNumber])
-            llDiceBoard.addView(imageViewDice)
+            putDice(i)
         }
+    }
+
+    private fun putDice(i: Int) {
+        val randomNumber = gen.nextInt(6) + 1
+        val imageViewDice = ImageView(this)
+        imageViewDice.id = i
+        imageViewDice.layoutParams = LinearLayout.LayoutParams(150, 150)
+        imageViewDice.setPadding(10, 0, 10, 0)
+        imageViewDice.setImageResource(diceIds[randomNumber])
+        llDiceBoard.addView(imageViewDice)
     }
 
     fun onClickRoll(view: View) {
         llDiceBoard.removeAllViewsInLayout()
+
+        val rowDiceCombinations = arrayListOf<Int>()
+
         for (i in 1..numberOfSelectedDices) {
             val randomNumber = gen.nextInt(6) + 1
             val imageViewDice = ImageView(this)
             imageViewDice.id = i
             imageViewDice.layoutParams = LinearLayout.LayoutParams(150, 150)
+            imageViewDice.setPadding(10, 0, 10, 0)
             imageViewDice.setImageResource(diceIds[randomNumber])
             llDiceBoard.addView(imageViewDice)
+
+            rowDiceCombinations.add(randomNumber)
         }
-        //var diceCombinations = mutableListOf<Int>(1, 2, 5)
-        updateHistory()
+
+        val simpleDateFormat = SimpleDateFormat("HH:mm:ss")
+        val time: String = simpleDateFormat.format(Date())
+
+        println("$time ------------------------")
+        val diceThrow = BEDiceThrow(time, rowDiceCombinations)
+        diceThrowsHistory.add(diceThrow)
 
     }
 
@@ -113,15 +126,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickClear(view: View) {
-        diceNumbers.clear()
         updateHistory()
 
     }
 
     fun testingButton(view: View) {
-        diceThrowsHistory.add(BEDiceThrow(1, listOf(1, 6, 2, 2)))
-        Log.d("debug", "$diceThrowsHistory and ${diceThrowsHistory.size}")
-
+//        diceThrowsHistory.add(BEDiceThrow(1, listOf(1, 6, 2, 2)))
+//        Log.d("debug", "$diceThrowsHistory and ${diceThrowsHistory.size}")
+        createBoard(numberOfSelectedDices)
     }
 
 

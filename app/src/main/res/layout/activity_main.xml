@@ -11,52 +11,30 @@
         android:id="@+id/btnHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
         android:onClick="onClickHistory"
         android:text="History"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:text="@string/dice_cup_version_1"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:padding="20dp"
         android:id="@+id/llDiceBoard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvHeader"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
         android:background="@color/diceBoard"
         android:orientation="horizontal"
+        android:padding="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnRoll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvHeader">
-
+        app:layout_constraintTop_toTopOf="parent">
 
 
     </LinearLayout>
 
-    <Button
-        android:text="testing"
-        android:onClick="testingButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/sDicePicker"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnRoll"
@@ -64,29 +42,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/llDiceBoard"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
         android:onClick="onClickRoll"
         android:text="@string/roll"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tvHistory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnRoll"
-        android:layout_centerHorizontal="true"
-        android:text="this is history"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnRoll" />
-
 
     <Spinner
-        android:entries="@array/dices"
         android:id="@+id/sDicePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/btnRoll"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="30dp"
+        android:entries="@array/dices"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toEndOf="@+id/btnRoll" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

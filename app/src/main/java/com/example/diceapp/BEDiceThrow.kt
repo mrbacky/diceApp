@@ -8,7 +8,7 @@ import kotlin.collections.ArrayList
 
 @Parcelize
 data class BEDiceThrow(
-    var time: Int,
+    var time: String,
     var diceValues: List<Int>
 ) : Parcelable {
 
