@@ -14,7 +14,6 @@ class HistoryAdapter(context: Context, diceThrows: ArrayList<BEDiceThrow>) :
     private var mDataSet: ArrayList<BEDiceThrow> = diceThrows
     private val mInflater: LayoutInflater = LayoutInflater.from(context)
     private val diceIds = Constants.diceIds
-    private var rowDiceValues: MutableList<Int> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ThrowHolder {
         val view: View = mInflater.inflate(R.layout.dice_throw_cell, parent, false)
@@ -25,7 +24,7 @@ class HistoryAdapter(context: Context, diceThrows: ArrayList<BEDiceThrow>) :
     override fun onBindViewHolder(holder: ThrowHolder, position: Int) {
         holder.itemView.llDiceContainer.removeAllViewsInLayout()
         holder.itemView.tvDiceThrowTime.text = mDataSet[position].time
-        var rowDiceValues: List<Int> = mDataSet[position].diceValues
+        val rowDiceValues: List<Int> = mDataSet[position].diceValues
         val rowMaxIndex = rowDiceValues.size - 1
         for (i in 0..rowMaxIndex) {
             val imageViewDice = ImageView(holder.itemView.llDiceContainer.context)

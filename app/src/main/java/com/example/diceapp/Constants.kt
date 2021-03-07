@@ -10,4 +10,8 @@ object Constants {
         R.drawable.dice5,
         R.drawable.dice6
     )
+
+    const val HISTORY_ARRAY = "dice throw history"
+    const val REQUEST_CODE_ANSWER = 1
+
 }
